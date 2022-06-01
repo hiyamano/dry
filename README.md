@@ -83,6 +83,7 @@ conda config --add channnels bioconda
 ```
 
 # fastq (fastq.gz)
+注)以下、実際に走らせるコマンドは、調べてください。
 解析に用いるファイル。gz圧縮されたまま取り扱えるツールは多く、基本的に圧縮したまま扱います。
 gz圧縮されていないファイルはテキストファイルなので中身を実際に見てみましょう。
 
@@ -94,6 +95,11 @@ seqkit stat ~.fastq
 〇QC　ほかにも色々あるが、fastqcは古くから存在し、ずっと使われている
 ```
 fastqc
+```
+〇トリミング
+```
+trimmomatic
+cutadapt
 ```
 
 〇マッピング
