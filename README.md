@@ -1,4 +1,4 @@
-#linuxのコマンド
+# linuxの基本コマンド
 rmの-fはforceで、強制削除です。使用する際は注意しましょう。
 一度は消してはいけないものを消すのが初心者あるあるですが、fastqファイル大本を消したりすると.....まずいですよね？
 以下のようなコマンドは実際に使って覚えましょう。知らないものがあれば調べてみましょう。
@@ -37,7 +37,7 @@ cp -f
 cp -rf
 ```
 
-#miniconda3 or anaconda3
+# miniconda3 or anaconda3
 https://docs.conda.io/en/latest/miniconda.html
 該当するパッケージをインストール(基本的にlinuxを想定)
 
