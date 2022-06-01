@@ -102,8 +102,10 @@ trimmomatic
 cutadapt
 ```
   
-〇マッピング  
-bwa、bowtie2は予めindexを作っておく必要があります。    
+〇マッピング(bwa) 
+bwa予めindexを作っておく必要があります。    
+結果は標準出力されるのでリダイレクト(>)してファイルに保存しましょう。  
+  
 -t: threads数を指定。スレッドがよくわからない人は、この数の並列で進むと思いましょう。スレッド指定した数だけcpuが必要。  
 -k: kmer, referenceとreadの配列で少なくともこの指定した長さが一致しないとマップしたことにならない。
 
@@ -118,17 +120,37 @@ bwa index reference.fasta
 
 bwa paired-end
 ```
-bwa mem -t 22 -k 25 reference.fasta read1.fastq.gz read2.fastq.gz > output.sam
+bwa mem -t 4 -k 25 reference.fasta read1.fastq.gz read2.fastq.gz > output.sam
 ```
 bwa single-end
 ```
-bwa mem -t 22 -k 25 reference.fasta read1.fastq.gz > output.sam
+bwa mem -t 4 -k 25 reference.fasta read1.fastq.gz > output.sam
 ```
 
-```
-bowtie2
-```
+〇マッピング(bowtie2) 
+bowtie2予めindexを作っておく必要があります。  
+結果は標準出力されるのでリダイレクト(>)してファイルに保存しましょう。  
+  
+-p: threads数を指定。スレッドがよくわからない人は、この数の並列で進むと思いましょう。スレッド指定した数だけcpuが必要。  
+追加で下記のようなオプションを指定することが個人的に多い。  
+--no-discordant  
+--no-mixed  
 
+bowtie2 index  
+```
+bowtie2-build -f reference.fasta reference.fasta
+```
+  
+bowtie2 paired-end  
+```
+bowtie2 -p 4 -x reference.fasta -1 read1.fastq.gz -2 read2.fastq.gz > output.sam
+```
+  
+bowtie2 single-end  
+```
+bowtie2 -p 4 -x reference.fasta -1 read1.fastq.gz > output.sam
+```
+  
 # sam, bam
 マッピングした後のファイルは、標準出力(コマンドラインにそのまま出力される)か、ファイルとして保存されることが一般的。
 標準出力されるものは、以下のようにファイルに保存します。
