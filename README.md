@@ -1,3 +1,87 @@
+#linuxのコマンド
+rmの-fはforceで、強制削除です。使用する際は注意しましょう。
+一度は消してはいけないものを消すのが初心者あるあるですが、fastqファイル大本を消したりすると.....まずいですよね？
+以下のようなコマンドは実際に使って覚えましょう。知らないものがあれば調べてみましょう。
+
+```
+ls
+ls -l
+ls -al
+
+cd
+cd ../
+cd ../../
+cd -
+cd ~
+
+pwd
+
+mkdir test
+touch test.txt
+echo "test dayo" > test.txt
+echo "test dayo" >> test.txt
+
+cat test.txt
+head test.txt
+tail test.txt
+
+more test.txt
+less test.txt
+
+rm test.txt
+rm -f test
+rm -rf test
+
+cp
+cp -f
+cp -rf
+```
+
+#miniconda3 or anaconda3
+https://docs.conda.io/en/latest/miniconda.html
+該当するパッケージをインストール(基本的にlinuxを想定)
+
+もしconda導入後、condaコマンド等が使えなければ、bashと打ち込みbashシェルを起動しましょう。
+condaはbashrc等に、起動するように内容を書き込むので、bashシェルを起動すると、デフォルトではconda環境のbaseに入るはずです。
+```
+bash
+```
+
+baseという環境は、conda環境内の大本となるところで、ここにいろいろツールを入れることもできますが、
+いろんなツールを入れたことによって環境が汚くなってきた際に、大本故に切り捨てることがめんどうです。
+最初から切り捨てることも視野に入れ、別途子供となる環境を作成して、その中で作業しましょう。
+
+
+conda環境を作成 (testという名の環境を作成)　一応pythonを3.8か3.9指定でインストールしましょう。
+```
+conda create -n test python=3.9
+```
+
+testという環境のactivateします。
+```
+conda activate test
+```
+
+testという環境にいろいろツールを追加しましょう。
+NGS関連のツールはbiocondaというリポジトリにほとんど登録されています。
+(最新のツールが登録されているわけではなく、一部ツールはとても古かったりもしばしば)
+
+```
+conda install bwa -c bioconda
+conda install bowtie2 -c bioconda
+conda install cutadapt -c bioconda
+conda install trimmomatic -c bioconda
+conda install seqkit -c bioconda
+conda install samtools -c bioconda
+```
+
+上ではbiocondaを直接指定しましたが、インストールするツールを探す先として、biocondaを追加もできます。(つまりデフォルトではbiocondaは探す先にはいっていない。)
+リポジトリの追加
+```
+conda config --add channnels conda-forge
+conda config --add channnels bioconda
+```
+
 # fastq (fastq.gz)
 解析に用いるファイル。gz圧縮されたまま取り扱えるツールは多く、基本的に圧縮したまま扱います。
 gz圧縮されていないファイルはテキストファイルなので中身を実際に見てみましょう。
