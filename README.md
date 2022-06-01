@@ -37,12 +37,12 @@ mv test.txt text2.txt
 mv test2.txt test2
 
 rm test.txt
-rm -f test
+rm -r test
 rm -rf test
 
-cp
-cp -f
-cp -rf
+cp test.txt test2.txt
+cp -r test test2
+cp -rf test2 test3
 
 cat test.txt |head -n 5 |tail -n 1
 ```
