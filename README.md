@@ -22,8 +22,12 @@ echo "test dayo" > test.txt
 echo "test dayo" >> test.txt
 
 cat test.txt
+
 head test.txt
+head -n 20 text.txt
+
 tail test.txt
+tail -n 20 test.txt
 
 more test.txt
 less test.txt
@@ -39,6 +43,8 @@ rm -rf test
 cp
 cp -f
 cp -rf
+
+cat test.txt |head -n 5 |tail -n 1
 ```
 
 # miniconda3 or anaconda3
