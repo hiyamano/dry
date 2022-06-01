@@ -103,11 +103,26 @@ cutadapt
 ```
 
 〇マッピング
-bwa、bowtie2は予めindexを作っておく必要があります。
+bwa、bowtie2は予めindexを作っておく必要があります。  
+-t: threads数を指定。スレッドがよくわからない人は、この数の並列で進むと思いましょう。スレッド指定した数だけcpuが必要。  
+-k: kmer, referenceとreadの配列で少なくともこの指定した長さが一致しないとマップしたことにならない。
 
+
+bwa index  
+reference.fasta.amb reference.fasta.ann、reference.fasta.bwt、reference.fasta.pac、reference.fasta.sa  
+等が生成される。db名をつけられるが特に指定する必要はない。  
+以後、reference.fastaと指定すれば、reference.fastaをindex化した上記ファイル等が使用される。  
 ```
 bwa index reference.fasta
-bwa reference.fasta ~.fastq
+```
+
+bwa paired-end
+```
+bwa mem -t 22 -k 25 reference.fasta read1.fastq.gz read2.fastq.gz > output.sam
+```
+bwa single-end
+```
+bwa mem -t 22 -k 25 reference.fasta read1.fastq.gz > output.sam
 ```
 
 ```
