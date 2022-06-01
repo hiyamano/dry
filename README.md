@@ -28,6 +28,10 @@ tail test.txt
 more test.txt
 less test.txt
 
+mv test test2
+mv test.txt text2.txt
+mv test2.txt test2
+
 rm test.txt
 rm -f test
 rm -rf test
