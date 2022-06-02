@@ -186,5 +186,23 @@ PCRのduplicateを除きたい。
 
 bamベースで除く、一番の定番？デフォルトではただマークされるだけ。実際にリードを除くときは、REMOVE_DUPLICATES=true
 ```
-java -Xmx16g -jar /imetgpfs/tools/picard-tools-1.128/picard.jar  MarkDuplicates I=input.bam O=output.bam  M=log.txt REMOVE_DUPLICATES=true VALIDATION_STRINGENCY=SILENT ASSUME_SORTED=true
+java -Xmx16g -jar picard.jar  MarkDuplicates I=input.bam O=output.bam  M=log.txt REMOVE_DUPLICATES=true VALIDATION_STRINGENCY=SILENT ASSUME_SORTED=true
+```
+# make bigwig
+
+bamのカバレッジトラックだけを抽出したようなもの(Deeptools bamCoverageをよく使う)。バイナリ
+```
+bamCoverage --bam input.bam -o output.bw --binSize 10
+```
+
+chip-seq, atac-seq等は、リードの位置ではなくフラグメント(インサート)の位置が知りたいことが多いので、その場合は--extendReadsオプションを使用。  
+ read1    read2  
+|---->    <----|  
+flagment(insert)  
+|--------------|
+
+
+総リード数が各サンプルで大きく異なり、ピークの比較がしにくく揃えたい、というときは--normalizeUsing等を使用(下記はCPM: count per million)  
+```
+bamCoverage --bam input.bam -o output.bw --binSize 10 --extendReads --normalizeUsing CPM
 ```
