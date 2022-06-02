@@ -47,6 +47,23 @@ cp -rf test2 test3
 cat test.txt |head -n 5 |tail -n 1
 ```
 
+その他、よく使うけど...調べましょう...?一部機能を使うだけでも十分役に立ちます。
+```
+◎grep
+
+◎awk
+
+◎sed
+
+〇cut
+
+〇find
+
+△paste
+
+△join
+```
+
 # miniconda3 or anaconda3
 https://docs.conda.io/en/latest/miniconda.html  
 該当するパッケージをインストール(基本的にlinuxを想定)  
