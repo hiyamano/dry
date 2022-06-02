@@ -198,9 +198,9 @@ bamCoverage --bam input.bam -o output.bw --binSize 10
 chip-seq, atac-seq等は、リードの位置ではなくフラグメント(インサート)の位置が知りたいことが多いので、その場合は--extendReadsオプションを使用。  
  read1    read2  
 |---->    <----|  
-flagment(insert)  
-|--------------|
 
+|--------------|
+flagment(insert)  
 
 総リード数が各サンプルで大きく異なり、ピークの比較がしにくく揃えたい、というときは--normalizeUsing等を使用(下記はCPM: count per million)  
 ```
