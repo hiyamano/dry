@@ -92,11 +92,11 @@ conda config --add channnels conda-forge
 conda config --add channnels bioconda
 ```
 # fasta, fastq, sam?
-fastaファイルはヘッダー(配列の名前)と配列(DNA等)を記載したもの。　　
-ヘッダーは > を文頭につけます。
+fastaファイルはヘッダー(配列の名前)と配列(DNA等)を記載したもの。  
+ヘッダーは > を文頭につけます。  
 配列部分は、適当な長さで折り返されていることが多いです。一行で表示してもfastaフォーマットとしては問題ありません。  
-位置配列分の情報しかないfastaファイルに対して、複数の配列をもつものをmulti fasta等と呼びます。  
-アライメント、マッピングのreference(あるいはquery)として、用いる基本です。
+1配列分の情報しかないfastaファイルに対して、複数の配列をもつものをmulti fasta等と呼びます。  
+アライメント、マッピングのreference(あるいはquery)として、用いる基本です。  
 ```
 >名前A
 AAAAAAAAAAAAAA
