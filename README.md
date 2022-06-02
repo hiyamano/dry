@@ -181,5 +181,10 @@ indexの作成(~.bam.bai)
 samtools index input.bam
 ```
 
+# remove dedupe
+PCRのduplicateを除きたい。
 
-
+bamベースで除く、一番の定番？デフォルトではただマークされるだけ。実際にリードを除くときは、REMOVE_DUPLICATES=true
+```
+java -Xmx16g -jar /imetgpfs/tools/picard-tools-1.128/picard.jar  MarkDuplicates I=input.bam O=output.bam  M=log.txt REMOVE_DUPLICATES=true VALIDATION_STRINGENCY=SILENT ASSUME_SORTED=true
+```
