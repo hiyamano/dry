@@ -91,7 +91,50 @@ conda install samtools -c bioconda
 conda config --add channnels conda-forge
 conda config --add channnels bioconda
 ```
-  
+# fasta, fastq, sam?
+fastaファイルはヘッダー(配列の名前)と配列(DNA等)を記載したもの。　　
+ヘッダーは > を文頭につけます。
+配列部分は、適当な長さで折り返されていることが多いです。一行で表示してもfastaフォーマットとしては問題ありません。  
+位置配列分の情報しかないfastaファイルに対して、複数の配列をもつものをmulti fasta等と呼びます。  
+アライメント、マッピングのreference(あるいはquery)として、用いる基本です。
+```
+>名前A
+AAAAAAAAAAAAAA
+TTTTTTTTTTTTTT
+CCCCCCCCCCCCCC
+GGGGGGGGGGGGGG
+>名前B
+AAAAAAAAAAAAATTTTTTTTTTTTTTCCCCCCCCCCCCCCGGGGGGGGGGGGGG
+```
+
+fastqファイル  
+fastaと比較して、fastqファイルは、リードのクオリティ情報が含まれる点、１つの配列は必ず４行から構成される点が異なります。  
+ヘッダ(配列の名前)は　@ を文頭につけます。  
+配列は長くても一行！  
++　(たまにここにもなにか情報がのっていることがありますが、基本気にしなくていいです。)  
+クオリティ情報! (必ず配列と長さが同じ!)  
+```
+@read1
+AAAAAAAAAAAAAAATTTTTTTTTTTTTTCCCCCCCCCCCCCCCCGGGGGGGGGGGGGGG
++
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+```
+
+samファイル
+基本的にはfasta(reference配列)にfastq(シーケンスデータ)をマッピングした結果のテキストファイル。  
+実際の解析では、このファイルをソート、変換したbamファイルを使用します。  
+samファイルを自在に操作できるようになることが、柔軟な解析につながることは多いと思います。  
+文頭が@で始まるヘッダー行と、その後に、実際のマッピング結果を記載した行が一行ごとに記載されています。  
+
+ヘッダー行には、リファレンス配列の情報(長さや名前)、実行時のコマンド等が含まれます。  
+
+一行ごとに含まれている情報を実際に見てみましょう。  
+http://crusade1096.web.fc2.com/sam.html
+
+singleとpairedでちょっと中身が変わります。  
+2列目にflagと呼ばれる数値が記載されており、そのリードがどんな状況でマップしたのかを判断できます。  
+
+
 # fastq (fastq.gz)
 注)以下、実際に走らせるコマンドは、調べてください。  
 解析に用いるファイル。gz圧縮されたまま取り扱えるツールは多く、基本的に圧縮したまま扱います。  
