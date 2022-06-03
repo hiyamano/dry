@@ -151,6 +151,19 @@ http://crusade1096.web.fc2.com/sam.html
 singleとpairedでちょっと中身が変わります。  
 2列目にflagと呼ばれる数値が記載されており、そのリードがどんな状況でマップしたのかを判断できます。  
 
+# resourse
+ncbiに塩基配列は大体あります。  
+モデル生物の配列やアノテーションなんかはensemble等からダウンロードするのもよいでしょう。  
+
+ncbi :https://www.ncbi.nlm.nih.gov/genome  
+ensemble: https://asia.ensembl.org/index.html  
+
+ヒトはhg19、マウスはmm10を使用することが多いです。(特にリクエストがなければ通常これらを使っている。)    
+何故新しいものを使わないのか->主だった遺伝子では大きな変化はない、過去の解析と整合性をとるため、等  
+
+hg19:  
+https://grch37.ensembl.org/Homo_sapiens/Info/Index  
+
 
 # fastq (fastq.gz)
 注)以下、実際に走らせるコマンドは、調べてください。  
