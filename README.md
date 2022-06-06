@@ -180,11 +180,43 @@ seqkit stat ~.fastq
 fastqc
 ```
 〇トリミング  
+よく(私が)使っているアダプター配列
+
 ```
-trimmomatic
-cutadapt
+>nextera_common
+CTGTCTCTTATACACATCT
+>nextera_mate
+AGATGTGTATAAGAGACAG
+>nextera_pcrfree
+ATGTGTATAAGAGACA
+>TruSeq_Adaptor
+AGATCGGAAGAGCACACGTCTGAACTCCAGTCA
+>TruSeq_Adaptor_short
+AGATCGGAAGAGCAC
+>TruSeq_Adaptor2
+AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT
+>TruSeq_Adaptor2_short
+AGATCGGAAGAGCGT
 ```
-  
+
+trimmomaticはアダプター配列をfastaファイルとして指定する。inputするfastq, outputするfastq(unpairedも欲しければ)等に加え、オプションを指定。  
+SEとPEで若干違うので調べましょう。  
+```
+trimmomatic PE -threads 4 -phred33 -trimlog output.log input_R1.fastq.gz input_R2.fastq.gz output_R1.fastq.gz output_R1_unpaired.fastq.gz output_R2.fastq.gz output_R2_unpaired.fastq ILLUMINACLIP:adapters.fasta:2:30:10 MINLEN:30
+```
+
+cutadaptはアダプター配列を直接指定することも、fastaファイルとして指定することもできます。  
+
+配列を直接指定する例：nexteraの場合  
+```
+cutadapt -a CTGTCTCTTATACACATCT -A CTGTCTCTTATACACATCT -m 30 -j 4 -o output_R1.fastq.gz -p output_R2.fastq.gz input_R1.fastq.gz input_R2.fastq.gz
+```
+
+ファイル入力、リード1, リード2でそれぞれ指定する。
+```
+cutadapt -a file:adapter.fasta -A file:adapter.fasta -m 30 -j 4 -o output_R1.fastq.gz -p output_R2.fastq.gz input_R1.fastq.gz input_R2.fastq.gz
+```
+
 〇マッピング(bwa) 
 bwa予めindexを作っておく必要があります。    
 結果は標準出力されるのでリダイレクト(>)してファイルに保存しましょう。  
