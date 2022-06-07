@@ -277,6 +277,7 @@ bwa reference.fasta ~.fastq > outputfile.sam
 samファイルは通常、そのまま置いておかないで、バイナリー化したbamファイルとして置いておきます。
 またbam化に際して、sort, indexの作成、を行います。
 
+
 〇samtoolsを用いて、sortとbam化を行う。
 ```
 samtools sort -O BAM -o output.bam input.sam 
@@ -313,3 +314,23 @@ fragment(insert)
 ```
 bamCoverage --bam input.bam -o output.bw --binSize 10 --extendReads --normalizeUsing CPM
 ```
+# sam, bamファイルの操作
+sam, bamですぐにできるととても役立つ操作。どれくらいできますか？  
+samtoolsでの操作をうまく行えば大体できますが、その他awkやsed等のlinuxコマンドでもできます。  
+1. マップしているリードだけ抜き出す。
+2. secondary, supplmentaryを取り除く。
+3. duplicatedを取り除く。
+4. 特定のreference配列領域のリードだけを抜き出す。
+
+# fastaファイルの操作
+seqkitでの操作に加え、awk, sed, cut等上手く使えるようになりましょう。　　
+1. 配列名で抜き出し
+2. 配列名での抜き出しをグループで
+3. 特定の領域の抜き出し(とある遺伝子とか)
+
+# fastqファイルの操作
+seqkitでの操作に加え、awk, sed, cut等上手く使えるようになりましょう。　　
+1. 配列名で抜き出し
+2. 配列名での抜き出しをグループで
+3. 圧縮、非圧縮の扱い。(テキストとして見たいときは、gzを解凍する。普段は圧縮しておいておく、ファイルサイズが大きいので。)
+
